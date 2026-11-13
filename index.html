@@ -1104,6 +1104,25 @@ body.janela-aberta{overflow:hidden}
 @media (min-width:1024px){.faixa-chamada-grade{grid-template-columns:1fr auto}.fc-botao{justify-self:end}}
 @media (max-width:719px){.fc-botao{width:100%;justify-content:center}}
 @media (prefers-reduced-motion:reduce){.fc-fio{transform:none}.fc-texto > *{opacity:1;transform:none}}
+
+/* =========================================================
+   ATUAÇÃO: declaração em destaque, traço que se desenha e três pilares
+   ========================================================= */
+.atuacao-nova{display:block}
+.atuacao-declaracao{font-size:clamp(1.9rem,3.8vw,3.3rem);font-weight:300;letter-spacing:-.03em;line-height:1.15;color:var(--grafite);max-width:22ch;margin-top:var(--s3);text-align:left !important;hyphens:manual !important}
+.atuacao-traco{display:block;width:72px;height:1px;background:var(--grafite);margin:var(--s5) 0;transform:scaleX(0);transform-origin:left;transition:transform 1.2s cubic-bezier(.6,0,.2,1) .3s}
+.atuacao-traco.on{transform:scaleX(1)}
+.atuacao-grade{display:grid;gap:var(--s5)}
+.atuacao-texto{color:var(--cinza);font-size:1.08rem;line-height:1.8;max-width:58ch}
+.atuacao-pilares{list-style:none;margin:0;padding:0}
+.atuacao-pilares li{display:grid;grid-template-columns:2.6rem 1fr;gap:var(--s2);padding:1.1rem 0;border-top:1px solid var(--linha)}
+.atuacao-pilares li:last-child{border-bottom:1px solid var(--linha)}
+.ap-n{font-size:.7rem;letter-spacing:.2em;font-weight:500;color:var(--cinza);padding-top:.35rem}
+.atuacao-pilares h3{font-size:1.1rem;font-weight:500}
+.atuacao-pilares p{color:var(--cinza);margin-top:.2rem;font-size:.97rem;text-align:left !important}
+@media (min-width:1024px){.atuacao-grade{grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:var(--s6);align-items:start}}
+@media (prefers-reduced-motion:reduce){.atuacao-traco{transform:none;transition:none}}
+.atuacao-textos .atuacao-texto + .atuacao-texto{margin-top:var(--s2)}
 </style>
 </head>
 
@@ -1182,8 +1201,8 @@ body.janela-aberta{overflow:hidden}
     <span class="etiqueta">Atuação</span>
     </div>
     <div class="col-corpo">
-    <p class="intro">Nossa atuação é dedicada a contratos empresariais e ao direito societário. Assessoramos empresas na elaboração, na revisão e na gestão dos contratos com clientes, fornecedores e parceiros, e dos documentos que regem a relação entre os sócios.</p>
-    <p class="intro">O trabalho é preventivo e contínuo, com acompanhamento dos contratos durante toda a vigência, e não apenas no momento da assinatura.</p>
+    <p class="intro">O escritório atua nas principais frentes do direito contratual e do direito societário, assessorando empresas nas relações com clientes, fornecedores e parceiros e na organização da sociedade entre os sócios.</p>
+    <p class="intro">O trabalho segue método próprio de análise e acompanhamento dos contratos e é conduzido com diligência, ética, sigilo e transparência, da estruturação à solução de eventuais divergências.</p>
     </div>
   </div>
 </section>
@@ -1196,7 +1215,6 @@ body.janela-aberta{overflow:hidden}
     <h2 class="titulo-secao">Contratos empresariais e direito societário</h2>
     </div>
     <div class="col-corpo">
-    <p class="intro">Com atuação dedicada a contratos empresariais e direito societário, o escritório assessora empresas de diferentes setores na prevenção e na solução de conflitos, da estruturação das relações comerciais à organização da sociedade entre os sócios.</p>
     <ul class="tiles tiles-areas">
       <li><button type="button" class="tile" data-area="contratos" aria-haspopup="dialog"><span class="tile-n">I</span><h3>Contratos empresariais</h3><span class="tile-abrir">Ver atuação</span></button></li>
       <li><button type="button" class="tile" data-area="gestao-contratos" aria-haspopup="dialog"><span class="tile-n">II</span><h3>Gestão de contratos</h3><span class="tile-abrir">Ver atuação</span></button></li>
@@ -1939,7 +1957,7 @@ document.getElementById("ano").textContent = new Date().getFullYear();
 /* Surgimento suave e escalonado ao rolar */
 (function(){
   if(window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
-  const seletores = "main > section:not(.capa) .etiqueta, main > section:not(.capa) .titulo-secao, main > section:not(.capa) .intro, .tile, .setor, main > section .servicos-lista li, .etapa-m, .esc-bio, .esc-links li, .esc-foto, .formulario, .canais";
+  const seletores = "main > section:not(.capa) .etiqueta, main > section:not(.capa) .titulo-secao, main > section:not(.capa) .intro, .tile, .setor, .atuacao-declaracao, .atuacao-texto, .atuacao-pilares li, main > section .servicos-lista li, .etapa-m, .esc-bio, .esc-links li, .esc-foto, .formulario, .canais";
   const els = document.querySelectorAll(seletores);
   const obs = new IntersectionObserver(function(ents){
     ents.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("on"); obs.unobserve(e.target); } });
@@ -1998,6 +2016,14 @@ document.getElementById("ano").textContent = new Date().getFullYear();
   if(!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches){ f.classList.add("on"); return; }
   const o = new IntersectionObserver(function(e){ if(e[0].isIntersecting){ f.classList.add("on"); o.disconnect(); } }, {threshold:.4});
   o.observe(f);
+})();
+
+/* Atuação: o traço se desenha quando a seção aparece */
+(function(){
+  const t = document.querySelector(".atuacao-traco"); if(!t) return;
+  if(!("IntersectionObserver" in window)){ t.classList.add("on"); return; }
+  const o = new IntersectionObserver(function(e){ if(e[0].isIntersecting){ t.classList.add("on"); o.disconnect(); } }, {threshold:1});
+  o.observe(t);
 })();
 </script>
 </body>
