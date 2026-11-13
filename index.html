@@ -126,42 +126,49 @@ FIM DO PIXEL -->
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Diagnóstico contratual"
+          "name": "Análise de contratos"
         }
       },
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Modelos e cláusulas"
+          "name": "Elaboração de contratos e modelos"
         }
       },
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Fluxo de entrada de contratos"
+          "name": "Organização do fluxo contratual"
         }
       },
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Controle de contratos"
+          "name": "Gestão de prazos e reajustes"
         }
       },
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Playbooks e mapas de risco"
+          "name": "Relatórios de riscos contratuais"
         }
       },
       {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "Atendimento sob demanda"
+          "name": "Consultoria contratual"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Execução contratual"
         }
       },
       {
@@ -997,6 +1004,106 @@ html,body{overflow-x:hidden}
   /* texto justificado sem buracos: última linha à esquerda e espaçamento contido */
   main p{text-align-last:left;word-spacing:-.02em}
 }
+
+/* Áreas de atuação em blocos institucionais, só com o nome da área */
+.tiles-areas{grid-auto-rows:1fr}
+.tiles-areas li{list-style:none}
+.tiles-areas .tile{display:flex;flex-direction:column;justify-content:space-between;min-height:150px;height:100%;text-decoration:none;color:var(--grafite)}
+.tiles-areas .tile-n{margin-bottom:0}
+.tiles-areas .tile h3{min-height:0;display:block;font-size:1.15rem;font-weight:500}
+@media (min-width:1024px){.tiles-areas{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:719px){.tiles-areas .tile{min-height:110px}}
+
+/* Blocos de área como botões */
+.tiles-areas .tile{width:100%;border:0;cursor:pointer;font:inherit;text-align:left}
+.tile-abrir{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--cinza);margin-top:var(--s2);display:inline-flex;align-items:center;gap:10px}
+.tile-abrir::after{content:"";width:18px;height:1px;background:currentColor;transition:width .3s}
+.tile:hover .tile-abrir::after{width:30px}
+/* Janela com a explicação da área */
+.area-janela{border:0;padding:0;width:min(760px,calc(100% - 32px));max-height:calc(100vh - 64px);background:#FFFFFF;color:var(--grafite);box-shadow:0 30px 80px -30px rgba(31,29,36,.45)}
+.area-janela::backdrop{background:rgba(31,29,36,.45);backdrop-filter:blur(3px)}
+.area-janela[open]{animation:janela-abrir .35s ease}
+@keyframes janela-abrir{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.area-conteudo{padding:56px 48px 8px}
+.area-titulo{font-size:clamp(1.7rem,3vw,2.3rem);font-weight:300;letter-spacing:-.02em;margin-top:var(--s2)}
+.area-texto + .area-texto{margin-top:var(--s2) !important}
+.area-texto{color:var(--cinza);margin-top:var(--s3);line-height:1.8;text-align:justify;hyphens:auto}
+.area-sub{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;font-weight:600;margin:var(--s5) 0 var(--s2);color:var(--grafite)}
+.area-lista{list-style:none;margin:0;padding:0;display:grid;gap:0 var(--s4)}
+.area-lista li{padding:.75rem 0;border-top:1px solid var(--linha);font-size:.97rem}
+.area-rodape{padding:var(--s4) 48px 48px}
+.area-fechar{position:absolute;top:18px;right:18px;width:44px;height:44px;border:0;background:none;cursor:pointer}
+.area-fechar span,.area-fechar span::after{position:absolute;left:11px;top:21px;width:22px;height:1.5px;background:var(--grafite);transform:rotate(45deg);content:""}
+.area-fechar span::after{left:0;top:0;transform:rotate(90deg)}
+@media (min-width:640px){.area-lista{grid-template-columns:1fr 1fr}}
+@media (max-width:639px){.area-conteudo{padding:52px 24px 4px}.area-rodape{padding:var(--s3) 24px 32px}.area-rodape .pilula{width:100%}}
+body.janela-aberta{overflow:hidden}
+
+/* =========================================================
+   CAPA: título que sobe linha a linha e um documento que se escreve
+   ========================================================= */
+.heroi-esq .capa-titulo .t1,.heroi-esq .capa-titulo .t2{opacity:0;transform:translateY(28px);animation:titulo-subir 1s cubic-bezier(.2,.7,.2,1) forwards}
+.heroi-esq .capa-titulo .t1{animation-delay:.15s}
+.heroi-esq .capa-titulo .t2{animation-delay:.4s}
+@keyframes titulo-subir{to{opacity:1;transform:none}}
+.documento{margin-top:var(--s5);max-width:440px;display:grid;gap:15px}
+.documento span{display:block;height:1px;width:var(--w);background:#C9C6D0;transform:scaleX(0);transform-origin:left;animation:doc-linha .9s cubic-bezier(.6,0,.2,1) forwards;animation-delay:calc(.9s + var(--i) * .2s)}
+.documento-rubrica{width:150px;height:auto;margin-top:10px;overflow:visible}
+.documento-rubrica path{fill:none;stroke:var(--grafite);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;animation:doc-assinar 1.4s 2.1s ease-in-out forwards}
+@keyframes doc-linha{to{transform:scaleX(1)}}
+@keyframes doc-assinar{to{stroke-dashoffset:0}}
+@media (max-width:719px){.documento{margin-top:var(--s4);gap:12px;max-width:88%}.documento-rubrica{width:120px}}
+@media (prefers-reduced-motion:reduce){
+  .heroi-esq .capa-titulo .t1,.heroi-esq .capa-titulo .t2{opacity:1;transform:none;animation:none}
+  .documento span{transform:none;animation:none}
+  .documento-rubrica path{stroke-dashoffset:0;animation:none}
+}
+
+/* Título da capa: linha de apoio menor e a palavra principal em destaque */
+.heroi-esq .capa-titulo{font-size:clamp(3.4rem,7vw,6.6rem);line-height:.95;letter-spacing:-.05em}
+.heroi-esq .capa-titulo .t1{font-size:.3em;font-weight:400;letter-spacing:.01em;line-height:1.3;color:var(--cinza);margin:0 0 .35em .04em}
+.heroi-esq .capa-titulo .t2{font-weight:300;margin-top:0}
+@media (max-width:719px){.heroi-esq .capa-titulo{font-size:3.6rem}.heroi-esq .capa-titulo .t1{font-size:.32em}}
+
+/* Título da capa: três linhas de mesmo peso, tamanho contido, leitura de escritório */
+.heroi-esq .capa-titulo{font-size:clamp(2.5rem,4.2vw,3.9rem);line-height:1.1;letter-spacing:-.025em;font-weight:400}
+.heroi-esq .capa-titulo .t1,.heroi-esq .capa-titulo .t2,.heroi-esq .capa-titulo .t3{display:block;font-size:1em;font-weight:400;color:var(--grafite);letter-spacing:-.025em;line-height:1.1;margin:0}
+.heroi-esq .capa-titulo .t3{opacity:0;transform:translateY(28px);animation:titulo-subir 1s cubic-bezier(.2,.7,.2,1) .65s forwards}
+@media (max-width:719px){.heroi-esq .capa-titulo{font-size:2.5rem}}
+@media (prefers-reduced-motion:reduce){.heroi-esq .capa-titulo .t3{opacity:1;transform:none;animation:none}}
+
+/* Título da capa em escada editorial: cada linha avança, como recuos de cláusulas */
+.heroi-esq .capa-titulo .t2{padding-left:1.25em}
+.heroi-esq .capa-titulo .t3{padding-left:2.5em;display:flex !important;align-items:center;gap:.4em}
+.t3-fio{display:inline-block;width:.9em;height:1px;background:var(--grafite);transform:scaleX(0);transform-origin:left;animation:doc-linha .7s .9s cubic-bezier(.6,0,.2,1) forwards}
+@media (max-width:719px){.heroi-esq .capa-titulo{font-size:2.25rem}.heroi-esq .capa-titulo .t2{padding-left:.9em}.heroi-esq .capa-titulo .t3{padding-left:1.8em}}
+@media (prefers-reduced-motion:reduce){.t3-fio{transform:none;animation:none}}
+/* =========================================================
+   FAIXA "AGENDE UMA REUNIÃO": versão premium
+   Um fio grafite percorre a faixa quando ela aparece,
+   o texto entra em sequência e o botão responde ao mouse.
+   ========================================================= */
+.faixa-chamada{position:relative;overflow:hidden;background:#FFFFFF !important;border-top:1px solid #E5E5E8;border-bottom:1px solid #E5E5E8}
+.fc-fio{position:absolute;top:-1px;left:0;right:0;height:1px;background:var(--grafite);transform:scaleX(0);transform-origin:left;transition:transform 1.6s cubic-bezier(.6,0,.2,1)}
+.faixa-chamada.on .fc-fio{transform:scaleX(1)}
+.faixa-chamada-grade{display:grid !important;gap:var(--s3);align-items:center;padding-top:var(--s5) !important;padding-bottom:var(--s5) !important}
+.fc-texto > *{display:block;opacity:0;transform:translateY(14px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.faixa-chamada.on .fc-texto > *{opacity:1;transform:none}
+.fc-texto > *:nth-child(2){transition-delay:.12s}
+.fc-texto > *:nth-child(3){transition-delay:.24s}
+.fc-etiqueta{font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;font-weight:500;color:var(--cinza)}
+.faixa-chamada .fc-texto strong{font-size:clamp(1.6rem,2.6vw,2.2rem);font-weight:300;letter-spacing:-.02em;color:var(--grafite);margin-top:.4rem}
+.faixa-chamada .fc-apoio{font-size:1rem;color:var(--cinza);margin-top:.5rem;max-width:54ch}
+.fc-botao{position:relative;display:inline-flex;align-items:center;gap:14px;justify-self:start;padding:18px 30px;border:1px solid var(--grafite);border-radius:999px;color:var(--grafite);text-decoration:none;font-size:.85rem;letter-spacing:.08em;font-weight:600;overflow:hidden;isolation:isolate;transition:color .45s ease}
+.fc-botao::before{content:"";position:absolute;inset:0;background:var(--grafite);transform:translateX(-101%);transition:transform .55s cubic-bezier(.6,0,.2,1);z-index:-1}
+.fc-botao:hover{color:#FFFFFF}
+.fc-botao:hover::before{transform:none}
+.fc-botao .seta-txt{width:22px;transition:width .4s}
+.fc-botao:hover .seta-txt{width:36px}
+.fc-icone svg{width:18px;height:18px;display:block}
+@media (min-width:1024px){.faixa-chamada-grade{grid-template-columns:1fr auto}.fc-botao{justify-self:end}}
+@media (max-width:719px){.fc-botao{width:100%;justify-content:center}}
+@media (prefers-reduced-motion:reduce){.fc-fio{transform:none}.fc-texto > *{opacity:1;transform:none}}
 </style>
 </head>
 
@@ -1021,10 +1128,8 @@ html,body{overflow-x:hidden}
   </div>
   <nav class="menu-movel" id="menuMovel" aria-label="Menu">
     <div class="container menu-grade">
-      <a href="#atuacao">Serviços em contratos</a>
+      <a href="#atuacao">Áreas de atuação</a>
       <a href="#setores">Setores</a>
-      <a href="#execucao">Execução contratual</a>
-      <a href="#societario">Direito societário</a>
       <a href="#escritorio">Escritório</a>
       <a href="#duvidas">Dúvidas frequentes</a>
       <a href="#contato">Contato</a>
@@ -1038,40 +1143,35 @@ html,body{overflow-x:hidden}
 <section class="heroi-mf" id="inicio">
   <div class="heroi-painel" aria-hidden="true"></div>
   <svg class="heroi-linhas" viewBox="0 0 1000 560" preserveAspectRatio="none" aria-hidden="true">
-    <ellipse cx="300" cy="280" rx="210" ry="270" pathLength="1"/>
-    <line x1="430" y1="0" x2="680" y2="560" pathLength="1"/>
+    <ellipse cx="235" cy="280" rx="185" ry="250" pathLength="1"/>
+    <line x1="574" y1="0" x2="480" y2="560" pathLength="1"/>
   </svg>
   <div class="container heroi-grade">
     <div class="heroi-esq">
-      <h1 class="capa-titulo"><span class="so-leitor">Mazutti Advocacia: </span><span class="t1">Advocacia especializada</span> <span class="t2">em contratos</span></h1>
-      <div class="linha-tempo" aria-label="Ciclo do contrato acompanhado pelo escritório">
-      <span class="linha-fio" aria-hidden="true"></span>
-      <ol>
-        <li style="--i:0"><span class="ponto"></span><span class="rotulo">Assinatura</span></li>
-        <li style="--i:1"><span class="ponto"></span><span class="rotulo">Prazos</span></li>
-        <li style="--i:2"><span class="ponto"></span><span class="rotulo">Reajustes</span></li>
-        <li style="--i:3"><span class="ponto"></span><span class="rotulo">Renovação</span></li>
-        <li style="--i:4"><span class="ponto"></span><span class="rotulo">Encerramento</span></li>
-      </ol>
-    </div>
+      <h1 class="capa-titulo"><span class="so-leitor">Mazutti Advocacia: </span><span class="t1">Advocacia</span> <span class="t2">especializada</span> <span class="t3">em contratos</span></h1>
     </div>
     <div class="heroi-dir">
       <span class="destaque-tag">Atuação</span>
       <ul class="heroi-links">
-        <li><a href="#atuacao">Serviços em contratos<span class="seta" aria-hidden="true"></span></a><p>Análise, modelos, rotina, prazos e relatórios de risco.</p></li>
-        <li><a href="#execucao">Execução contratual<span class="seta" aria-hidden="true"></span></a><p>Notificação, cobrança, rescisão, defesa e acordos.</p></li>
-        <li><a href="#societario">Direito societário<span class="seta" aria-hidden="true"></span></a><p>Contrato social, acordo de sócios, entrada e saída de sócios.</p></li>
-        <li><a href="#setores">Setores<span class="seta" aria-hidden="true"></span></a><p>Agronegócio, indústria, comércio, transporte, serviços, saúde e educação.</p></li>
+        <li><a href="#atuacao" data-area="contratos">Contratos empresariais<span class="seta" aria-hidden="true"></span></a><p>Elaboração, revisão e negociação de contratos.</p></li>
+        <li><a href="#atuacao" data-area="gestao-contratos">Gestão de contratos<span class="seta" aria-hidden="true"></span></a><p>Acompanhamento dos contratos durante toda a vigência.</p></li>
+        <li><a href="#atuacao" data-area="execucao">Execução contratual<span class="seta" aria-hidden="true"></span></a><p>Atuação nos casos de descumprimento.</p></li>
+        <li><a href="#atuacao" data-area="societario">Direito societário<span class="seta" aria-hidden="true"></span></a><p>Organização da sociedade e da relação entre os sócios.</p></li>
       </ul>
     </div>
   </div>
 </section>
 
 <!-- Faixa de chamada, como a faixa de newsletter da referência -->
-<div class="faixa-chamada">
+<div class="faixa-chamada" id="faixaChamada">
+  <span class="fc-fio" aria-hidden="true"></span>
   <div class="container faixa-chamada-grade">
-    <div><strong>Agende uma reunião</strong><span>Converse diretamente com o advogado responsável sobre os contratos da sua empresa.</span></div>
-    <a href="#" class="pilula pilula-contorno" data-wa="faixa">Falar pelo WhatsApp</a>
+    <div class="fc-texto">
+      <span class="fc-etiqueta">Contato</span>
+      <strong>Agende uma reunião</strong>
+      <span class="fc-apoio">Converse diretamente com o advogado responsável sobre os contratos da sua empresa.</span>
+    </div>
+    <a href="#" class="fc-botao" data-wa="faixa"><span class="fc-icone"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91C21.95 6.45 17.5 2 12.04 2Zm0 18.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.23 8.23 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 4.54 0 8.24 3.7 8.24 8.24 0 4.55-3.7 8.24-8.24 8.24Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.29Z"/></svg></span><span>Falar pelo WhatsApp</span><span class="seta-txt" aria-hidden="true"></span></a>
   </div>
 </div>
 
@@ -1092,19 +1192,19 @@ html,body{overflow-x:hidden}
 <section class="secao principios com-sol" id="atuacao">
   <div class="container servicos-grade">
     <div class="col-cab">
-    <span class="etiqueta">Serviços</span>
-    <h2 class="titulo-secao">Como o escritório ajuda a sua empresa</h2>
+    <span class="etiqueta">Áreas de atuação</span>
+    <h2 class="titulo-secao">Contratos empresariais e direito societário</h2>
     </div>
     <div class="col-corpo">
-    <ul class="tiles">
-      <li class="tile"><span class="tile-n">I</span><h3>Análise dos contratos atuais</h3><p>Avaliamos os contratos que a sua empresa já tem e mostramos, em linguagem clara, onde há risco de prejuízo e quais pontos admitem renegociação.</p></li>
-      <li class="tile"><span class="tile-n">II</span><h3>Modelos de contrato sob medida</h3><p>Sua empresa recebe contratos prontos para usar com clientes e fornecedores, escritos para a realidade do seu negócio.</p></li>
-      <li class="tile"><span class="tile-n">III</span><h3>Organização da rotina de contratos</h3><p>Definimos como os contratos são pedidos, revisados e aprovados dentro da empresa, para que nada seja assinado às pressas ou sem revisão.</p></li>
-      <li class="tile"><span class="tile-n">IV</span><h3>Controle de prazos e reajustes</h3><p>Acompanhamos vencimentos, renovações e reajustes dos seus contratos e avisamos antes de cada data importante.</p></li>
-      <li class="tile"><span class="tile-n">V</span><h3>Relatórios de risco</h3><p>Você recebe relatórios mensais, trimestrais ou semestrais com a situação dos contratos e orientações para as negociações da equipe.</p></li>
-      <li class="tile"><span class="tile-n">VI</span><h3>Consultoria sob demanda</h3><p>Para dúvidas e revisões pontuais, quando a sua empresa precisar.</p></li>
+    <p class="intro">Com atuação dedicada a contratos empresariais e direito societário, o escritório assessora empresas de diferentes setores na prevenção e na solução de conflitos, da estruturação das relações comerciais à organização da sociedade entre os sócios.</p>
+    <ul class="tiles tiles-areas">
+      <li><button type="button" class="tile" data-area="contratos" aria-haspopup="dialog"><span class="tile-n">I</span><h3>Contratos empresariais</h3><span class="tile-abrir">Ver atuação</span></button></li>
+      <li><button type="button" class="tile" data-area="gestao-contratos" aria-haspopup="dialog"><span class="tile-n">II</span><h3>Gestão de contratos</h3><span class="tile-abrir">Ver atuação</span></button></li>
+      <li><button type="button" class="tile" data-area="execucao" aria-haspopup="dialog"><span class="tile-n">III</span><h3>Execução contratual</h3><span class="tile-abrir">Ver atuação</span></button></li>
+      <li><button type="button" class="tile" data-area="societario" aria-haspopup="dialog"><span class="tile-n">IV</span><h3>Direito societário</h3><span class="tile-abrir">Ver atuação</span></button></li>
+      <li><button type="button" class="tile" data-area="acordo" aria-haspopup="dialog"><span class="tile-n">V</span><h3>Acordo de sócios</h3><span class="tile-abrir">Ver atuação</span></button></li>
+      <li><button type="button" class="tile" data-area="disputas" aria-haspopup="dialog"><span class="tile-n">VI</span><h3>Disputas empresariais</h3><span class="tile-abrir">Ver atuação</span></button></li>
     </ul>
-    <div class="abertura-acao" style="justify-content:flex-start;margin-top:var(--s5)"><a href="#" class="pilula pilula-cheia" data-wa="servicos">Solicitar uma análise dos contratos</a></div>
     </div>
   </div>
 </section>
@@ -1139,48 +1239,6 @@ html,body{overflow-x:hidden}
         <summary><svg class="setor-icone" viewBox="0 0 48 48" aria-hidden="true"><g stroke="currentColor" stroke-width="1.25" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M24 20c-4-3-10-3-16-2v22c6-1 12-1 16 2 4-3 10-3 16-2V18c-6-1-12-1-16 2z"/><path d="M24 20v22"/><path d="M24 5v9M19.5 9.5h9"/></g></svg><h3>Saúde e educação</h3><span class="mais" aria-hidden="true"></span></summary>
         <div class="setor-texto"><p>Atuamos com clínicas, consultórios e instituições de ensino na estruturação dos contratos com profissionais parceiros, prestadores terceirizados e espaços compartilhados, definindo responsabilidades, divisão de receitas e regras de convivência entre as partes.</p></div>
       </details>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== EXECUÇÃO CONTRATUAL ===================== -->
-<section class="secao principios" id="execucao">
-  <div class="container duas-colunas">
-    <div class="col-cab">
-    <span class="etiqueta">Execução contratual</span>
-    <h2 class="titulo-secao">Quando o contrato não é cumprido</h2>
-    </div>
-    <div class="col-corpo">
-    <p class="intro">O escritório atua para que a sua empresa receba o que é devido ou encerre a relação com segurança, priorizando a solução negociada e recorrendo à Justiça quando necessário.</p>
-    <ul class="servicos-lista">
-      <li><span class="romano">I</span><div><h3>Notificação extrajudicial</h3><p>Comunicação formal à outra parte, com prazo para cumprir a obrigação ou pagar o valor devido.</p></div></li>
-      <li><span class="romano">II</span><div><h3>Cobrança e execução</h3><p>Cobrança de valores em atraso e execução judicial do contrato, com busca de bens e valores do devedor.</p></div></li>
-      <li><span class="romano">III</span><div><h3>Rescisão por descumprimento</h3><p>Encerramento do contrato por falha da outra parte, com aplicação das multas e cobrança dos prejuízos.</p></div></li>
-      <li><span class="romano">IV</span><div><h3>Defesa da empresa</h3><p>Atuação quando a sua empresa é cobrada ou acusada de descumprir um contrato.</p></div></li>
-      <li><span class="romano">V</span><div><h3>Acordos</h3><p>Negociação e formalização de acordos que encerram a disputa sem deixar pendências.</p></div></li>
-    </ul>
-    <a class="link-mais" href="#cliente-nao-pagou-como-cobrar">O cliente não pagou. Como cobrar?</a>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== DIREITO SOCIETÁRIO ===================== -->
-<section class="secao" id="societario">
-  <div class="container duas-colunas">
-    <div class="col-cab">
-    <span class="etiqueta">Direito societário</span>
-    <h2 class="titulo-secao">A relação entre os sócios</h2>
-    </div>
-    <div class="col-corpo">
-    <p class="intro">A relação entre os sócios também é regida por contratos, o contrato social e o acordo de sócios. O escritório elabora e revisa esses documentos para que decisões, entradas, saídas e divisão de resultados sigam regras claras, combinadas com antecedência.</p>
-    <ul class="servicos-lista">
-      <li><span class="romano">I</span><div><h3>Contrato social atualizado</h3><p>O documento da empresa revisado para refletir quem são os sócios hoje, como a empresa é administrada e como as decisões são tomadas.</p></div></li>
-      <li><span class="romano">II</span><div><h3>Acordo de sócios</h3><p>Regras combinadas sobre decisões importantes, venda de participação, distribuição de lucros e o que fazer em caso de desacordo.</p></div></li>
-      <li><span class="romano">III</span><div><h3>Entrada de novos sócios</h3><p>Ingresso de um sócio ou investidor estruturado, com participação, direitos e responsabilidades definidos.</p></div></li>
-      <li><span class="romano">IV</span><div><h3>Saída de sócios</h3><p>Retirada ou exclusão de um sócio conduzida com segurança, incluindo o cálculo e a forma de pagamento da participação.</p></div></li>
-      <li><span class="romano">V</span><div><h3>Distribuição de lucros</h3><p>Regras para a retirada e a divisão de lucros entre os sócios, alinhadas à estrutura da empresa e ao trabalho da contabilidade.</p></div></li>
-    </ul>
-    <a class="link-mais" href="#acordo-de-socios">Saiba mais sobre acordo de sócios</a>
     </div>
   </div>
 </section>
@@ -1709,12 +1767,12 @@ html,body{overflow-x:hidden}
             <label for="servico">Serviço desejado</label>
             <select id="servico" name="servico" required>
               <option value="">Escolha uma opção</option>
-              <option>Análise dos contratos atuais</option>
-              <option>Modelos de contrato sob medida</option>
-              <option>Organização da rotina de contratos</option>
-              <option>Controle de prazos e reajustes</option>
-              <option>Relatórios de risco</option>
-              <option>Consultoria sob demanda</option>
+              <option>Análise de contratos</option>
+              <option>Elaboração de contratos e modelos</option>
+              <option>Organização do fluxo contratual</option>
+              <option>Gestão de prazos e reajustes</option>
+              <option>Relatórios de riscos contratuais</option>
+              <option>Consultoria contratual</option>
               <option>Cobrança ou execução de contrato</option>
               <option>Contrato social ou acordo de sócios</option>
               <option>Entrada ou saída de sócios</option>
@@ -1735,6 +1793,14 @@ html,body{overflow-x:hidden}
     <p class="faixa-canais">WhatsApp (49) 99934-0831<span class="sep"></span><a href="https://share.google/PVQrlI4K7GqNbXe8p" target="_blank" rel="noopener">Concórdia (SC)</a><span class="sep"></span><a href="https://www.instagram.com/igor.mazutti/" target="_blank" rel="noopener">@igor.mazutti</a></p>
   </div>
 </section>
+
+<!-- ===================== EXPLICAÇÃO DAS ÁREAS (janela) ===================== -->
+<template id="area-contratos"><span class="etiqueta">Área de atuação</span><h3 class="area-titulo">Contratos empresariais</h3><p class="area-texto">A atuação em contratos empresariais abrange a elaboração, a revisão e a negociação dos instrumentos que regem as relações da empresa com clientes, fornecedores e parceiros. O trabalho parte da operação de cada cliente, para que o contrato reflita a forma como o negócio efetivamente funciona.</p><h4 class="area-sub">Principais contratos</h4><ul class="area-lista"><li>Fornecimento e compra e venda mercantil</li><li>Prestação de serviços</li><li>Distribuição e representação comercial</li><li>Parceria e cooperação empresarial</li><li>Integração agroindustrial</li><li>Licença de software e tecnologia</li><li>Confidencialidade e não concorrência</li><li>Locação e comodato empresarial</li></ul></template><template id="area-gestao-contratos"><span class="etiqueta">Área de atuação</span><h3 class="area-titulo">Gestão de contratos</h3><p class="area-texto">A gestão de contratos compreende o acompanhamento dos instrumentos durante toda a sua vigência, da assinatura ao encerramento. O objetivo é dar à empresa controle sobre obrigações, prazos, reajustes e riscos de toda a carteira contratual.</p><h4 class="area-sub">Principais frentes</h4><ul class="area-lista"><li>Diagnóstico da carteira de contratos</li><li>Padronização de modelos e cláusulas</li><li>Fluxo de solicitação, revisão e aprovação</li><li>Controle de vencimentos, renovações e reajustes</li><li>Acompanhamento de níveis de serviço</li><li>Relatórios periódicos de riscos</li></ul></template><template id="area-execucao"><span class="etiqueta">Área de atuação</span><h3 class="area-titulo">Execução contratual</h3><p class="area-texto">Nos casos de descumprimento, o escritório atua na defesa dos direitos previstos no contrato, com prioridade para a solução negociada e recurso à Justiça quando necessário. A atuação alcança tanto a empresa credora quanto a empresa cobrada.</p><h4 class="area-sub">Principais frentes</h4><ul class="area-lista"><li>Notificação extrajudicial</li><li>Cobrança e execução de títulos extrajudiciais</li><li>Ação monitória e ação de cobrança</li><li>Rescisão por descumprimento e perdas e danos</li><li>Defesa em ações de cobrança e execução</li><li>Negociação e formalização de acordos</li></ul></template><template id="area-societario"><span class="etiqueta">Área de atuação</span><h3 class="area-titulo">Direito societário</h3><p class="area-texto">A atuação em direito societário trata da organização da sociedade e da relação entre os sócios, com foco em sociedades limitadas. O trabalho busca regras claras de administração, deliberação e distribuição de resultados.</p><h4 class="area-sub">Principais frentes</h4><ul class="area-lista"><li>Constituição de sociedades</li><li>Alteração e consolidação de contrato social</li><li>Administração e regras de deliberação</li><li>Distribuição de lucros</li><li>Reorganizações societárias</li><li>Dissolução e liquidação</li></ul></template><template id="area-acordo"><span class="etiqueta">Área de atuação</span><h3 class="area-titulo">Acordo de sócios</h3><p class="area-texto">O acordo de sócios é o contrato firmado entre os sócios de uma empresa para organizar a convivência entre eles naquilo que o contrato social não alcança ou trata apenas de forma genérica. Ele define como as decisões importantes são tomadas, como as quotas podem ser vendidas, como os lucros são distribuídos e o que acontece quando um sócio deixa a sociedade ou quando surge um impasse.</p><p class="area-texto">É elaborado de forma coerente com o contrato social e com a realidade da empresa, e costuma ganhar importância em momentos de crescimento, de entrada de novos sócios ou investidores e de sucessão.</p></template><template id="area-disputas"><span class="etiqueta">Área de atuação</span><h3 class="area-titulo">Disputas empresariais</h3><p class="area-texto">Quando a negociação não resolve, o escritório representa a empresa em disputas decorrentes de contratos e da relação entre sócios, perante o Poder Judiciário e em procedimentos de mediação e arbitragem. A estratégia é definida a partir dos documentos e do objetivo do cliente, com atenção ao custo e ao tempo de cada caminho.</p><h4 class="area-sub">Principais frentes</h4><ul class="area-lista"><li>Revisão e rescisão de contratos</li><li>Indenizações por descumprimento contratual</li><li>Dissolução parcial de sociedade</li><li>Apuração de haveres</li><li>Exclusão de sócio</li><li>Responsabilidade de administradores</li><li>Mediação e arbitragem</li></ul></template>
+<dialog class="area-janela" id="areaJanela" aria-labelledby="areaTitulo">
+  <button type="button" class="area-fechar" id="areaFechar" aria-label="Fechar"><span></span></button>
+  <div class="area-conteudo" id="areaConteudo"></div>
+  <div class="area-rodape"><a href="#contato" class="pilula pilula-cheia" id="areaContato">Agendar reunião</a></div>
+</dialog>
 </main>
 
 <!-- ===================== RODAPÉ ===================== -->
@@ -1902,6 +1968,36 @@ document.getElementById("ano").textContent = new Date().getFullYear();
   const area = document.querySelector(".heroi-dir");
   if(area){ area.addEventListener("mouseenter", parar); area.addEventListener("mouseleave", iniciar); }
   if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches) iniciar();
+})();
+
+/* Áreas de atuação: ao clicar, abre a explicação da área */
+(function(){
+  const janela = document.getElementById("areaJanela");
+  const conteudo = document.getElementById("areaConteudo");
+  if(!janela) return;
+  function abrir(chave){
+    const t = document.getElementById("area-" + chave); if(!t) return;
+    conteudo.innerHTML = ""; conteudo.appendChild(t.content.cloneNode(true));
+    const h = conteudo.querySelector(".area-titulo"); if(h) h.id = "areaTitulo";
+    if(typeof janela.showModal === "function"){ janela.showModal(); } else { janela.setAttribute("open",""); }
+    document.body.classList.add("janela-aberta");
+  }
+  function fechar(){ if(janela.open && typeof janela.close === "function"){ janela.close(); } else { janela.removeAttribute("open"); } document.body.classList.remove("janela-aberta"); }
+  document.querySelectorAll("[data-area]").forEach(function(el){
+    el.addEventListener("click", function(ev){ ev.preventDefault(); abrir(el.dataset.area); });
+  });
+  document.getElementById("areaFechar").addEventListener("click", fechar);
+  janela.addEventListener("click", function(ev){ if(ev.target === janela) fechar(); });
+  janela.addEventListener("close", function(){ document.body.classList.remove("janela-aberta"); });
+  document.getElementById("areaContato").addEventListener("click", function(){ fechar(); });
+})();
+
+/* Faixa de contato: anima quando entra na tela */
+(function(){
+  const f = document.getElementById("faixaChamada"); if(!f) return;
+  if(!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches){ f.classList.add("on"); return; }
+  const o = new IntersectionObserver(function(e){ if(e[0].isIntersecting){ f.classList.add("on"); o.disconnect(); } }, {threshold:.4});
+  o.observe(f);
 })();
 </script>
 </body>
